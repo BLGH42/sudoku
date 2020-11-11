@@ -452,19 +452,7 @@ int main()
 		}
 		++l;
 	}
-    /*prints solved grid*/
-	i = 0;
-	while(i < 9)
-	{
-		printf("\n");
-		j = 0;
-		while(j < 9)
-		{
-			printf("%c", s[i][j]);
-			++j;
-		}
-		++i;
-	}
+	print_solved_grid(s);
 }
 
 char line_finder(char s[9][9], int i, int j, int q)

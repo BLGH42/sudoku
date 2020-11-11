@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 
-NAME = my_sudoku
+NAME = sudoku
 CC = gcc -Wall -Werror -Wextra
 SRC = src/*.c
 OBJ = *.o
