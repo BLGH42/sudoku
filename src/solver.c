@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include "sudoku.h"
 
-char line_finder(char all_tiles[9][9], int coordinate1, int coordinate2, int solution_box3);
+char line_finder(char all_tiles[9][9], int coordinate1, int coordinate2);
 char square_finder_top(char s[9][9], int counter1, int counter2, int counter3, int limit);
 char square_finder_mid(char s[9][9], int counter1, int counter2, int counter3, int limit);
 char square_finder_bot(char s[9][9], int counter1, int counter2, int counter3, int limit);
@@ -300,7 +300,10 @@ int main()
 				while(j < 9)
 				{
 					if(s[i][j] == '.' || s[i][j] == '+')
-						p[i][j][q] = line_finder(s, i, j, q);
+					{
+						s[i][j] = q + '0';
+						p[i][j][q] = line_finder(s, i, j);
+					}
 					++j;
 				}
 				++i;
@@ -423,7 +426,7 @@ int main()
 						k = 1;
 						while(k <= 9)
 						{
-							if(p[i][j][k] == '-')
+						if(p[i][j][k] == '-')
 							{
 								s[i][j] = k + '0';
 								p[i][j][k] = k + '0';
@@ -442,12 +445,11 @@ int main()
 	print_solved_grid(s);
 }
 
-char line_finder(char s[9][9], int i, int j, int q)
+char line_finder(char s[9][9], int i, int j)
 {
 	int k;
 	
 	k = 0;
-	s[i][j] = q + '0';
 	while(k < 9)
 	{
 		if(s[i][k] != '.' && s[i][k] != '+')
