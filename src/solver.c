@@ -262,20 +262,7 @@ int main()
 		}
 		++i;
 	}
-    /*prints starting grid*/
-	i = 0;
-	while(i < 9)
-	{
-		printf("\n");
-		j = 0;
-		while(j < 9)
-		{
-			printf("%c", s[i][j]);
-			++j;
-		}
-		++i;
-	}
-	printf("\n");
+	print_grid_start(s);
 	/*We put things in p[i][j][q]*/
 	i = 0;
 	while(i < 9)
