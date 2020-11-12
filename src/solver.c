@@ -17,6 +17,7 @@ int main()
 	int k;/*counter*/
 	int l;/*counter*/
 	int v;/*limit for square check*/
+	int vc;/*grid validity check*/
 
 	input_grid(s);
     /*proper grid building*/
@@ -46,20 +47,14 @@ int main()
 		j = 0;
 		while(j < 9)
 		{
-			k = 0;
-			while(k < 9)
+			if(s[i][j] == '.')
 			{
-				if(k != j && s[i][k] == s[i][j] && s[i][k] != '.')
+				vc = line_finder(s, i, j);
+				if(vc == 'X')
 				{
 					printf("Invalid	 grid.\n");
 					exit(0);
 				}
-				else if(k != i && s[k][j] == s[i][j] && s[k][j] != '.')
-				{
-					printf("Invalid	 grid.\n");
-					exit(0);
-				}
-				++k;
 			}
 			++j;
 		}
