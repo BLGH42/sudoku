@@ -6,7 +6,8 @@ char line_finder(char all_tiles[9][9], int coordinate1, int coordinate2);
 char square_finder_top(char s[9][9], int counter1, int counter2, int counter3, int limit);
 char square_finder_mid(char s[9][9], int counter1, int counter2, int counter3, int limit);
 char square_finder_bot(char s[9][9], int counter1, int counter2, int counter3, int limit);
-void line_loop(char s[9][9]);
+void grid_sweep(char s[9][9], void (*f)(char[9][9], int, int, int));
+void line_validity(char s[9][9], int i, int j, int k);
 
 int main()
 {
@@ -20,7 +21,7 @@ int main()
 	int v;/*limit for square check*/
 
 	input_grid(s);
-	line_loop(s);
+	grid_sweep(s, line_validity);
     /*checks doubles in all nine 3x3 squares*/
 	i = 0;
 	while(i < 3)
@@ -521,7 +522,7 @@ char square_finder_bot(char s[9][9], int i, int j, int q, int u)
 }
 
 
-void line_loop(char s[9][9])
+void grid_sweep(char s[9][9], void (*f)(char[9][9], int, int, int))
 {
 	int i;
 	int j;
@@ -536,16 +537,7 @@ void line_loop(char s[9][9])
 					k = 0;
 					while(k < 9)
 						{
-							if(k != j && s[i][k] == s[i][j] && s[i][k] != '.')
-								{
-									printf("Invalid	 grid.\n");
-									exit(0);
-								}
-							else if(k != i && s[k][j] == s[i][j] && s[k][j] != '.')
-								{
-									printf("Invalid	 grid.\n");
-									exit(0);
-								}
+							(*f)(s, i, j, k);
 							++k;
 						}
 					++j;
@@ -554,9 +546,17 @@ void line_loop(char s[9][9])
 		}
 }
 
-/*i0j0 = 1
-  i0j3 = 1 OK*/
-
-/*i0j2 = 1
-  i0j5 = 1 WRONG*/
-
+void line_validity(char s[9][9], int i, int j, int k)
+{
+	
+	if(k != j && s[i][k] == s[i][j] && s[i][k] != '.')
+		{
+			printf("Invalid	 grid.\n");
+			exit(0);
+		}
+	else if(k != i && s[k][j] == s[i][j] && s[k][j] != '.')
+		{
+			printf("Invalid	 grid.\n");
+			exit(0);
+		}
+}
