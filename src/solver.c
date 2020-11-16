@@ -6,6 +6,7 @@ char line_finder(char all_tiles[9][9], int coordinate1, int coordinate2);
 char square_finder_top(char s[9][9], int counter1, int counter2, int counter3, int limit);
 char square_finder_mid(char s[9][9], int counter1, int counter2, int counter3, int limit);
 char square_finder_bot(char s[9][9], int counter1, int counter2, int counter3, int limit);
+void line_loop(char s[9][9]);
 
 int main()
 {
@@ -17,51 +18,10 @@ int main()
 	int k;/*counter*/
 	int l;/*counter*/
 	int v;/*limit for square check*/
-	int vc;/*grid validity check*/
 
 	input_grid(s);
-    /*proper grid building*/
-    /*printf("Enter a 9x9 grid with digits from 1 to 9 in one single line, from top left to bottom right following the lines.\nNo identical digits in the same line, column or 3x3 subsquare.\nType . for empty tile.\n");
-	i = 0;
-	while(i < 9)
-	{
-		j = 0;
-		while(j < 9)
-		{
-			scanf("%c", &s[i][j]);
-			if(s[i][j] == '.' || s[i][j] >= '1' && s[i][j] <= '9')
-				;
-			else
-			{
-				printf("Instructions not followed.\n");
-				exit(0);
-			}
-			++j;
-		}
-		++i;
-		}*/
-    /*checks doubles on lines and columns*/
-	i = 0;	
-	while(i < 9)
-	{
-		j = 0;
-		while(j < 9)
-		{
-			if(s[i][j] == '.')
-			{
-				vc = line_finder(s, i, j);
-				if(vc == 'X')
-				{
-					printf("Invalid	 grid.\n");
-					exit(0);
-				}
-			}
-			++j;
-		}
-		++i;
-	}
+	line_loop(s);
     /*checks doubles in all nine 3x3 squares*/
-	/*top right*/
 	i = 0;
 	while(i < 3)
 	{
@@ -281,7 +241,6 @@ int main()
 		++i;
 	}
 	/*MONSTER SOLVING LOOP*/
-	/*square check*/
 	l = 0;
 	while(l < 82)
 	{
@@ -399,7 +358,6 @@ int main()
 				}
 				++i;
 			}
-			/*changes s[i][i] from '.' to stars if unique possible solution, or '+' if at least 2 solutions*/
 			i = 0;
 		    while(i < 9)
 			{
@@ -408,6 +366,7 @@ int main()
 				{
 					k = 1;
 				    while(k <= 9)
+						/*changes s[i][i] from '.' to stars if unique possible solution, or '+' if at least 2 solutions*/
 					{
 						if(p[i][j][k] == '-' && s[i][j] == '.')
 							s[i][j] = '*';
@@ -415,7 +374,7 @@ int main()
 							s[i][j] = '+';
 						++k;
 					}
-					/*writes solution in s[i][j] if there is only one possible (s[i][j] is star!*/
+					/*writes solution in s[i][j] if there is only one possible (s[i][j] is star!)*/
 					if(s[i][j] == '*')
 					{
 						k = 1;
@@ -442,8 +401,9 @@ int main()
 
 char line_finder(char s[9][9], int i, int j)
 {
+
 	int k;
-	
+
 	k = 0;
 	while(k < 9)
 	{
@@ -561,19 +521,42 @@ char square_finder_bot(char s[9][9], int i, int j, int q, int u)
 }
 
 
+void line_loop(char s[9][9])
+{
+	int i;
+	int j;
+	int k;
 
+	i = 0;
+	while(i < 9)
+		{
+			j = 0;
+			while(j < 9)
+				{
+					k = 0;
+					while(k < 9)
+						{
+							if(k != j && s[i][k] == s[i][j] && s[i][k] != '.')
+								{
+									printf("Invalid	 grid.\n");
+									exit(0);
+								}
+							else if(k != i && s[k][j] == s[i][j] && s[k][j] != '.')
+								{
+									printf("Invalid	 grid.\n");
+									exit(0);
+								}
+							++k;
+						}
+					++j;
+				}
+			++i;
+		}
+}
 
+/*i0j0 = 1
+  i0j3 = 1 OK*/
 
-/*	printf("\n");
-	printf("Impression des p[i][j][q] apres line finder");
-	for(j = 0 ; j < 9; ++j)
-	{
-	printf("\nj%d \n", j);
-	for(i = 0; i < 9; ++i)
-	{
-	printf("i%d-- ", i);
-	for(q = 1; q <= 9; ++q)
-	printf("q%d: %c ", q, p[i][j][q]);
-	printf("\n");
-	}   		
-	}*/
+/*i0j2 = 1
+  i0j5 = 1 WRONG*/
+
