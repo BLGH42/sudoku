@@ -7,8 +7,18 @@ char square_finder_top(char s[9][9], int counter1, int counter2, int counter3, i
 char square_finder_mid(char s[9][9], int counter1, int counter2, int counter3, int limit);
 char square_finder_bot(char s[9][9], int counter1, int counter2, int counter3, int limit);
 void grid_sweep(char s[9][9], void (*f)(char[9][9], int, int, int));
+void validity(char s[9][9], int i, int j, int k);
 void line_validity(char s[9][9], int i, int j, int k);
-
+void top_left_validity(char s[9][9], int i, int j, int k);
+void top_mid_validity(char s[9][9], int i, int j, int k);
+void top_right_validity(char s[9][9], int i, int j, int k);
+void mid_left_validity(char s[9][9], int i, int j, int k);
+void mid_mid_validity(char s[9][9], int i, int j, int k);
+void mid_right_validity(char s[9][9], int i, int j, int k);
+void bot_left_validity(char s[9][9], int i, int j, int k);
+void bot_mid_validity(char s[9][9], int i, int j, int k);
+void bot_right_validity(char s[9][9], int i, int j, int k);
+	
 int main()
 {
     char s[9][9]; /*what is written in current tile*/
@@ -21,203 +31,7 @@ int main()
 	int v;/*limit for square check*/
 
 	input_grid(s);
-	grid_sweep(s, line_validity);
-    /*checks doubles in all nine 3x3 squares*/
-	i = 0;
-	while(i < 3)
-	{
-		j = 0;
-		while(j < 3)
-		{
-			k = 0;
-			while(k < 3)
-			{
-				l = 0;
-				while(l < 3)
-				{
-					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
-					{
-						printf("Invalid	 grid.\n");
-						exit(0);
-					}
-					++l;
-				}
-				++k;
-			}
-			++j;
-		}	
-		j = 3;
-		while(j < 6)
-		{
-			k = 0;
-			while(k < 3)
-			{
-				l = 3;
-				while(l < 6)
-				{
-					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
-					{
-						printf("Invalid	 grid.\n");
-						exit(0);
-					}
-					++l;
-				}
-				++k;
-			}
-			++j;
-		}
-		j = 6;
-		while(j < 9)
-		{
-			k = 0;
-			while(k < 3)
-			{
-				l = 6;
-				while(l < 9)
-				{
-					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
-					{
-						printf("Invalid	 grid.\n");
-						exit(0);
-					}
-					++l;
-				}
-				++k;
-			}
-			++j;
-		}
-		++i;
-	}
-	i = 3;
-	while(i < 6)
-	{
-		j = 0;
-		while(j < 3)
-		{
-			k = 3;
-			while(k < 6)
-			{
-				l = 0;
-				while(l < 3)
-				{
-					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
-					{
-						printf("Invalid	 grid.\n");
-						exit(0);
-					}
-					++l;
-				}
-				++k;
-			}
-			++j;
-		}
-		j = 3;
-		while(j < 6)
-		{
-			k = 3;
-			while(k < 6)
-			{
-				l = 3;
-				while(l < 6)
-				{
-					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
-					{
-						printf("Invalid	 grid.\n");
-						exit(0);
-					}
-					++l;
-				}
-				++k;
-			}
-			++j;
-		}
-		j = 6;
-		while(j < 9)
-		{
-			k = 3;
-			while(k < 6)
-			{
-				l = 6;
-				while(l < 9)
-				{
-					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
-					{
-						printf("Invalid	 grid.\n");
-						exit(0);
-					}
-					++l;
-				}
-				++k;
-			}
-			++j;
-		}
-		++i;
-	}
-	i = 6;
-	while(i < 9)
-	{
-		j = 0;
-		while(j < 3)
-		{
-			k = 6;
-			while(k < 9)
-			{
-				l = 0;
-				while(l < 3)
-				{
-					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
-					{
-						printf("Invalid	 grid.\n");
-						exit(0);
-					}
-					++l;
-				}
-				++k;
-			}
-			++j;
-		}
-		j = 3;
-		while(j < 6)
-		{
-			k = 6;
-			while(k < 9)
-			{
-				l = 3;
-				while(l < 6)
-				{
-					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
-					{
-						printf("Invalid	 grid.\n");
-						exit(0);
-					}
-					++l;
-				}
-				++k;
-			}
-			++j;
-		}
-		j = 6;
-		while(j < 9)
-		{
-			k = 6;
-			while(k < 9)
-			{
-				l = 6;
-				while(l < 9)
-				{
-					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
-					{
-						printf("Invalid	 grid.\n");
-						exit(0);
-					}
-					++l;
-				}
-				++k;
-			}
-			++j;
-		}
-		++i;
-	}
+	grid_sweep(s, validity);
 	print_grid_start(s);
 	/*We put things in p[i][j][q]*/
 	i = 0;
@@ -558,5 +372,199 @@ void line_validity(char s[9][9], int i, int j, int k)
 		{
 			printf("Invalid	 grid.\n");
 			exit(0);
+		}
+}
+
+
+void validity(char s[9][9], int i, int j, int k)
+{
+	line_validity(s, i, j , k);
+	if(0 <= i && i < 3 && 0 <= j && j < 3)
+		top_left_validity(s, i, j, k);
+	else if(0 <= i && i < 3 && 3 <= j && j < 6)
+		top_mid_validity(s, i, j , k);
+	else if(0 <= i && i < 3 && 6 <= j && j < 9)
+		top_right_validity(s, i, j , k);
+	else if(3 <= i && i < 6 && 0 <= j && j < 3)
+		mid_left_validity(s, i, j , k);
+	else if(3 <= i && i < 6 && 3 <= j && j < 6)
+		mid_mid_validity(s, i, j , k);
+	else if(3 <= i && i < 6 && 6 <= j && j < 9)
+		mid_right_validity(s, i, j , k);
+	else if(6 <= i && i < 9 && 0 <= j && j < 3)
+		bot_left_validity(s, i, j , k);
+	else if(6 <= i && i < 9 && 3 <= j && j < 6)
+		bot_mid_validity(s, i, j , k);
+	else if(6 <= i && i < 9 && 6 <= j && j < 9)
+		bot_right_validity(s, i, j , k);
+}
+
+void top_left_validity(char s[9][9], int i, int j, int k)
+{
+	int l;
+	
+	if(k < 3)
+		{
+			l = 0;
+			while(l < 3)
+				{
+					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
+						{
+							printf("Invalid	 grid.\n");
+							exit(0);
+						}
+					++l;
+				}
+		}
+}
+void top_mid_validity(char s[9][9], int i, int j, int k)
+{
+	int l;
+	
+	if(k < 3)
+		{
+			l = 3;
+			while(l < 6)
+				{
+					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
+						{
+							printf("Invalid	 grid.\n");
+							exit(0);
+						}
+					++l;
+				}
+		}
+		}
+
+void top_right_validity(char s[9][9], int i, int j, int k)
+{
+	int l;
+	
+	if(k < 3)
+		{
+			l = 6;
+			while(l < 9)
+				{
+					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
+						{
+							printf("Invalid	 grid.\n");
+							exit(0);
+						}
+					++l;
+				}
+		}
+}
+
+void mid_left_validity(char s[9][9], int i, int j, int k)
+{
+	int l;
+	
+	if(3 <= k && k < 6)
+		{
+			l = 0;
+			while(l < 3)
+				{
+					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
+						{
+							printf("Invalid	 grid.\n");
+							exit(0);
+						}
+					++l;
+				}
+		}
+}
+
+void mid_mid_validity(char s[9][9], int i, int j, int k)
+{
+	int l;
+	
+    if(3 <= k && k < 6)
+		{
+			l = 3;
+			while(l < 6)
+				{
+					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
+						{
+							printf("Invalid	 grid.\n");
+							exit(0);
+						}
+					++l;
+				}
+		}
+}
+
+void mid_right_validity(char s[9][9], int i, int j, int k)
+{
+	int l;
+	
+    if(3 <= k && k < 6)
+		{
+			l = 6;
+			while(l < 9)
+				{
+					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
+						{
+							printf("Invalid	 grid.\n");
+							exit(0);
+						}
+					++l;
+				}
+		}
+}
+
+		void bot_left_validity(char s[9][9], int i, int j, int k)
+{
+	int l;
+	
+	if(6 <= k && k < 9)
+		{
+			l = 0;
+			while(l < 3)
+				{
+					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
+						{
+							printf("Invalid	 grid.\n");
+							exit(0);
+						}
+					++l;
+				}
+		}
+}
+
+void bot_mid_validity(char s[9][9], int i, int j, int k)
+{
+	int l;
+	
+	if(6 <= k && k < 9)
+		{
+			l = 3;
+			while(l < 6)
+				{
+					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
+						{
+							printf("Invalid	 grid.\n");
+							exit(0);
+						}
+					++l;
+				}
+		}
+}
+
+void bot_right_validity(char s[9][9], int i, int j, int k)
+{
+	int l;
+	
+	if(6 <= k && k < 9)
+		{
+			l = 6;
+			while(l < 9)
+				{
+					if(s[k][l] != '.' && k!=i && l!=j && s[i][j] == s[k][l])
+						{
+							printf("Invalid	 grid.\n");
+							exit(0);
+						}
+					++l;
+				}
 		}
 }
