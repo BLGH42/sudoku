@@ -6,7 +6,11 @@ void 	line_finder(char p[9][9][9], char all_tiles[9][9], int coordinate1, int co
 void 	square_finder_top_left(char p[9][9][9], char s[9][9], int counter1, int counter2, int counter3);
 void 	square_finder_top_mid(char p[9][9][9], char s[9][9], int counter1, int counter2, int counter3);
 void 	square_finder_top_right(char p[9][9][9], char s[9][9], int counter1, int counter2, int counter3);
-char 	square_finder_mid(char s[9][9], int counter1, int counter2, int counter3, int limit);
+void 	square_finder_mid_left(char p[9][9][9], char s[9][9], int counter1, int counter2, int counter3);
+void 	square_finder_mid_mid(char p[9][9][9], char s[9][9], int counter1, int counter2, int counter3);
+void 	square_finder_mid_right(char p[9][9][9], char s[9][9], int counter1, int counter2, int counter3);
+void 	square_finder_mid(char s[9][9], int counter1, int counter2, int counter3);
+void 	square_finder_mid(char s[9][9], int counter1, int counter2, int counter3);
 char 	square_finder_bot(char s[9][9], int counter1, int counter2, int counter3, int limit);
 void 	grid_sweep(char s[9][9],void (*f)(char[9][9], int, int, int));
 	
@@ -24,7 +28,6 @@ int 	main()
 	input_grid(s);
 	grid_sweep(s, validity);
 	print_grid_start(s);
-	/*We put things in p[i][j][q]*/
 	i = 0;
 	while(i < 9)
 	{
@@ -41,7 +44,6 @@ int 	main()
 		}
 		++i;
 	}
-	/*MONSTER SOLVING LOOP*/
 	l = 0;
 	while(l < 82)
 	{
@@ -89,30 +91,27 @@ int 	main()
 			while(i < 6)
 			{
 				/*middle left*/
-				v = 3;
-				j = v - 3;
-				while(j < v)
+				j = 0;
+				while(j < 3)
 				{
 					if(p[i][j][q] == '.')
-						p[i][j][q] = square_finder_mid(s, i, j, q, v);
+						square_finder_mid_left(p, s, i, j, q);
 					++j;
 				}
 				/*central square*/
-				v = 6;
-				j = v - 3;
-				while(j < v)
+				j = 3;
+				while(j < 6)
 				{
 					if(p[i][j][q] == '.')
-						p[i][j][q] = square_finder_mid(s, i, j, q, v);
+						square_finder_mid_mid(p, s, i, j, q);
 					++j;
 				}
 				/*middle right*/
-				v = 9;
-				j = v - 3;
-				while(j < v)
+				j = 6;
+				while(j < 9)
 				{
 					if(p[i][j][q] == '.')
-						p[i][j][q] = square_finder_mid(s, i, j, q, v);
+						square_finder_mid_right(p, s, i, j, q);
 					++j;
 				}
 				++i;
@@ -307,35 +306,91 @@ void 	square_finder_top_right(char p[9][9][9], char s[9][9], int i, int j, int q
 	return ;
 }
 
-char 	square_finder_mid(char s[9][9], int i, int j, int q, int u)
+void 	square_finder_mid_left(char p[9][9][9], char s[9][9], int i, int j, int q)
 {
 	int 	k;
 	int 	l;
 
-	k = 3;
 	if(s[i][j] == '.')
 	{
 		s[i][j] = q + '0';
+		k = 3;
 	    while(k < 6)
 		{
-			l = u - 3;
-			while(l < u)
+			l = 0;
+			while(l < 3)
 			{
 				if(s[k][l] != '.' && s[k][l] != '+')
-				{
 					if(k != i && l != j && s[i][j] == s[k][l])
 					{
 						s[i][j] = '.';
-						return ('X');
+						p[i][j][q] = 'X';
 					}
-				}
 				++l;
 			}
 			++k;
 		}
 		s[i][j] = '.';
 	}
-	return ('.');
+	return ;
+}
+
+void 	square_finder_mid_mid(char p[9][9][9], char s[9][9], int i, int j, int q)
+{
+	int 	k;
+	int 	l;
+
+	if(s[i][j] == '.')
+	{
+		s[i][j] = q + '0';
+		k = 3;
+	    while(k < 6)
+		{
+			l = 3;
+			while(l < 6)
+			{
+				if(s[k][l] != '.' && s[k][l] != '+')
+					if(k != i && l != j && s[i][j] == s[k][l])
+					{
+						s[i][j] = '.';
+						p[i][j][q] = 'X';
+					}
+				++l;
+			}
+			++k;
+		}
+		s[i][j] = '.';
+	}
+	return ;
+}
+
+void 	square_finder_mid_right(char p[9][9][9], char s[9][9], int i, int j, int q)
+{
+	int 	k;
+	int 	l;
+
+	if(s[i][j] == '.')
+	{
+		s[i][j] = q + '0';
+		k = 3;
+	    while(k < 6)
+		{
+			l = 6;
+			while(l < 9)
+			{
+				if(s[k][l] != '.' && s[k][l] != '+')
+					if(k != i && l != j && s[i][j] == s[k][l])
+					{
+						s[i][j] = '.';
+						p[i][j][q] = 'X';
+					}
+				++l;
+			}
+			++k;
+		}
+		s[i][j] = '.';
+	}
+	return ;
 }
 
 char 	square_finder_bot(char s[9][9], int i, int j, int q, int u)
