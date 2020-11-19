@@ -61,79 +61,57 @@ int 	main()
 				++i;
 			}
 			i = 0;
-			while(i < 9)
+			while (i < 9)
 			{
-				if (0 <= i && i < 3)
+				j = 0;
+				while (j < 9)
 				{
-					j = 0;
-					while(j < 3)
+					if (0 <= i && i < 3 && 0 <= j && j < 3)
 					{
 						if(p[i][j][q] == '.')
 							square_finder_top_left(p, s, i, j, q);
-						++j;
 					}
-					j = 3;
-					while(j < 6)
+					else if (0 <= i && i < 3 && 3 <= j && j < 6)
 					{
 						if(p[i][j][q] == '.')
 							square_finder_top_mid(p, s, i, j, q);
-						++j;
 					}
-					j = 6;
-					while(j < 9)
+					else if (0 <= i && i < 3 && 6 <= j && j < 9)
 					{
 						if(p[i][j][q] == '.')
 							square_finder_top_right(p, s, i, j, q);
-						++j;
 					}
-				}
-				else if (3 <= i && i < 6)
-				{
-					j = 0;
-					while(j < 3)
+					else if (3 <= i && i < 6 && 0 <= j && j < 3)
 					{
 						if(p[i][j][q] == '.')
 							square_finder_mid_left(p, s, i, j, q);
-						++j;
 					}
-					j = 3;
-					while(j < 6)
+					else if (3 <= i && i < 6 && 3 <= j && j < 6)
 					{
 						if(p[i][j][q] == '.')
 							square_finder_mid_mid(p, s, i, j, q);
-						++j;
 					}
-					j = 6;
-					while(j < 9)
+					else if (3 <= i && i < 6 && 6 <= j && j < 9)
 					{
 						if(p[i][j][q] == '.')
 							square_finder_mid_right(p, s, i, j, q);
-						++j;
 					}
-				}
-				else if (6 <= i && i < 9)
-				{
-					j = 0;
-					while(j < 3)
+					else if (6 <= i && i < 9 && 0 <= j && j < 3)
 					{
 						if(p[i][j][q] == '.')
 							square_finder_bot_left(p, s, i, j, q);
-						++j;
 					}
-					j = 3;
-					while(j < 6)
+					else if(6 <= i && i < 9 && 3 <= j && j < 6)
 					{
 						if(p[i][j][q] == '.')
 							square_finder_bot_mid(p, s, i, j, q);
-						++j;
 					}
-					j = 6;
-					while(j < 9)
+					else if(6 <= i && i < 9 && 6 <= j && j < 9)
 					{
 						if(p[i][j][q] == '.')
 							square_finder_bot_right(p, s, i, j, q);
-						++j;
 					}
+					++j;
 				}
 				++i;
 			}
