@@ -12,7 +12,7 @@ void 	square_finder_mid_right(char p[9][9][9], char s[9][9], int counter1, int c
 void 	square_finder_bot_left(char p[9][9][9], char s[9][9], int counter1, int counter2, int counter3);
 void 	square_finder_bot_mid(char p[9][9][9], char s[9][9], int counter1, int counter2, int counter3);
 void 	square_finder_bot_right(char p[9][9][9], char s[9][9], int counter1, int counter2, int counter3);
-void 	grid_sweep(char s[9][9],void (*f)(char[9][9], int, int, int));
+void 	grid_sweep(char p[9][9][9], char s[9][9], void (*f)(char [9][9][9], char[9][9], int, int));
 	
 int 	main()
 {
@@ -25,7 +25,7 @@ int 	main()
 	int 	l;/*counter*/
 
 	input_grid(s);
-	grid_sweep(s, validity);
+	grid_sweep(p, s, validity);
 	print_grid_start(s);
 	i = 0;
 	while(i < 9)
@@ -423,11 +423,10 @@ void 	square_finder_bot_right(char p[9][9][9], char s[9][9], int i, int j, int q
 	return ;
 }
 
-void 	grid_sweep(char s[9][9], void (*f)(char[9][9], int, int, int))
+void 	grid_sweep(char p[9][9][9], char s[9][9], void (*f)(char[9][9][9], char[9][9], int, int))
 {
 	int 	i;
 	int 	j;
-	int 	k;
 
 	i = 0;
 	while(i < 9)
@@ -435,12 +434,7 @@ void 	grid_sweep(char s[9][9], void (*f)(char[9][9], int, int, int))
 		j = 0;
 		while(j < 9)
 		{
-			k = 0;
-			while(k < 9)
-			{
-				(*f)(s, i, j, k);
-				++k;
-			}
+			(*f)(p, s, i, j);
 			++j;
 		}
 		++i;
