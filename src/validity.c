@@ -2,21 +2,6 @@
 #include<stdlib.h>
 #include"sudoku.h"
 
-void 	line_validity(char s[9][9], int i, int j, int k)
-{	
-	if(k != j && s[i][k] == s[i][j] && s[i][k] != '.')
-	{
-		printf("Invalid	 grid.\n");
-		exit(0);
-	}
-	else if(k != i && s[k][j] == s[i][j] && s[k][j] != '.')
-	{
-		printf("Invalid	 grid.\n");
-		exit(0);
-	}
-	return ;
-}
-
 void 	validity(char s[9][9], int i, int j, int k)
 {
 	line_validity(s, i, j, k);
@@ -38,6 +23,21 @@ void 	validity(char s[9][9], int i, int j, int k)
 		bot_mid_validity(s, i, j, k);
 	else if(6 <= i && i < 9 && 6 <= j && j < 9)
 		bot_right_validity(s, i, j, k);
+	return ;
+}
+
+void 	line_validity(char s[9][9], int i, int j, int k)
+{	
+	if(k != j && s[i][k] == s[i][j] && s[i][k] != '.')
+	{
+		printf("Invalid	 grid.\n");
+		exit(0);
+	}
+	else if(k != i && s[k][j] == s[i][j] && s[k][j] != '.')
+	{
+		printf("Invalid	 grid.\n");
+		exit(0);
+	}
 	return ;
 }
 
