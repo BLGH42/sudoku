@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include "sudoku.h"
 
-void	solution_check_squares(char p[9][9][9], char s[9][9], int i, int j)
+void	solution_check(char p[9][9][9], char s[9][9], int i, int j)
 {
 	if (s[i][j] == '.')
 	{ 
