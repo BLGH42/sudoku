@@ -28,32 +28,11 @@ void input_grid(char s[9][9])
 	return;
 }
 
-void print_grid_start(char s[9][9])
+void print_grid(char s[9][9])
 {
 	int i;
 	int j;
 	
-	i = 0;
-	while(i < 9)
-	{
-		printf("\n");
-		j = 0;
-		while(j < 9)
-		{
-			printf("%c", s[i][j]);
-			++j;
-		}
-		++i;
-	}
-	printf("\n");
-	return;
-}
-
-void print_solved_grid(char s[9][9])
-{
-	int i;
-	int j;
-
 	i = 0;
 	while(i < 9)
 	{

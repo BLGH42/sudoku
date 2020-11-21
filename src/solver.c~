@@ -4,13 +4,22 @@
 
 void	solution_counter(char p[9][9][9], char s[9][9], int i, int j)
 {
-	if(s[i][j] == '.')
-		s[i][j] = '*';
-	else if(s[i][j] == '*')
-		s[i][j] = '+';
-	p[1][1][1] = p[1][1][1];
+	int 	q;
+
+	q = 1;
+	while (q <= 9)
+	{
+		if(p[i][j][q] == '.')
+		{
+			if(s[i][j] == '.')
+				s[i][j] = '*';
+			else if(s[i][j] == '*')
+				s[i][j] = '+';
+		}
+		++q;
+	}
 	return ;
-} 
+}
 
 void 	solution_writer(char p[9][9][9], char s[9][9], int i, int j)
 {
@@ -21,10 +30,13 @@ void 	solution_writer(char p[9][9][9], char s[9][9], int i, int j)
 	{
 		if(s[i][j] == '*')
 		{
-			s[i][j] = q + '0';
-			p[i][j][q] = q + '0';
-			++q;
-		}										    
+			if(p[i][j][q] == '.')
+			{
+				s[i][j] = q + '0';
+				p[i][j][q] = q + '0';
+			}
+		}
+		++q;										    
 	}
 	return ;
 }

@@ -12,19 +12,28 @@ int 	main()
 	int    	r; /*process repeat*/
 
 	input_grid(s);
+	/*sij is # or . || pijq is \0*/
 	grid_sweep(p, s, validity_check);
+	/*no change*/
 	grid_sweep(p, s, initial_solution_array_filler);
+	/*sij is # or . || pijq is # or .*/
+	print_grid(s);
 	r = 0;
 	while (r < 81)
 	{
+		/*sij is # or . or +* || pijq is . (or # or X)*/
 		grid_sweep(p, s, solution_check_lines);
-		grid_sweep(p, s, solution_check);
+		/*sij is # or . || pijq is . (or # or X)*/
+		grid_sweep(p, s, solution_check_squares);
+		/*sij is # or . || pijq is . (or # or X)*/
 		grid_sweep(p, s, solution_counter);
+		/*sij is # or . or * || pijq is . (or # or X)*/
 		grid_sweep(p, s, solution_writer);
+		/*sij is # or . or +|| pijq is . (or # or X)*/
 		++r;
 	}
-	print_grid_start(s);
-	print_solved_grid(s);
+	/*if all sij # grid solved, otherwise .*/
+	print_grid(s);
 	return (0);
 }
 
