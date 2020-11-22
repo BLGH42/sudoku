@@ -2,35 +2,6 @@
 #include<stdlib.h>
 #include "sudoku.h"
 
-void 	solution_check_lines(char p[9][9][9], char s[9][9], int i, int j)
-{
-	int		k;
-	int		q;
-
-	if(s[i][j] == '.' || s[i][j] == '+')
-	{
-		q = 1;
-		while (q <= 9)
-		{
-			k = 0;
-			while(k < 9)
-			{
-				s[i][j] = q + '0';
-				if(s[i][k] != '.' && s[i][k] != '+')
-					if(k != j && s[i][k] == s[i][j])
-						p[i][j][q] = 'X';
-				if(s[k][j] != '.' && s[k][j] != '+')
-					if(k != i && s[k][j] == s[i][j])
-						p[i][j][q] = 'X';
-				++k;
-			}
-			++q;
-		}
-		s[i][j] = '.';
-	}
-	return ;
-}
-
 void 	solution_check_top_left(char p[9][9][9], char s[9][9], int i, int j)
 {
 	int 	k;

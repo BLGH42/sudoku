@@ -4,7 +4,7 @@
 
 void 	validity_check(char p[9][9][9], char s[9][9], int i, int j)
 {
-	line_validity(p, s, i, j);
+	lines_validity(p, s, i, j);
 	if(0 <= i && i < 3 && 0 <= j && j < 3)
 		top_left_validity(p, s, i, j);
 	else if(0 <= i && i < 3 && 3 <= j && j < 6)
