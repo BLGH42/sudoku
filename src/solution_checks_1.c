@@ -4,9 +4,9 @@
 
 void 	solution_check_top_left(char p[9][9][9], char s[9][9], int i, int j)
 {
+	int		q;
 	int 	k;
 	int 	l;
-	int		q;
 
 	q = 1;
 	while (q <= 9)
@@ -25,7 +25,8 @@ void 	solution_check_top_left(char p[9][9][9], char s[9][9], int i, int j)
 				}
 				++l;
 			}
-			++k;		}
+			++k;
+		}
 		++q;
 	}
 	return ;
@@ -33,9 +34,9 @@ void 	solution_check_top_left(char p[9][9][9], char s[9][9], int i, int j)
 
 void 	solution_check_top_mid(char p[9][9][9], char s[9][9], int i, int j)
 {
+	int		q;
 	int 	k;
 	int 	l;
-	int		q;
 
 	q = 1;
 	while (q <= 9)
@@ -63,9 +64,9 @@ void 	solution_check_top_mid(char p[9][9][9], char s[9][9], int i, int j)
 
 void 	solution_check_top_right(char p[9][9][9], char s[9][9], int i, int j)
 {
+	int		q;
 	int 	k;
 	int 	l;
-	int		q;
 
 	q = 1;
 	while (q <= 9)
@@ -93,9 +94,9 @@ void 	solution_check_top_right(char p[9][9][9], char s[9][9], int i, int j)
 
 void 	solution_check_mid_left(char p[9][9][9], char s[9][9], int i, int j)
 {
+	int		q;
 	int 	k;
 	int 	l;
-	int		q;
 
 	q = 1;
 	while (q <= 9)
