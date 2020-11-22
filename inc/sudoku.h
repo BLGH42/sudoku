@@ -30,6 +30,7 @@ void 	solution_check_bot_left(char p[9][9][9], char s[9][9], int i, int j);
 void 	solution_check_bot_mid(char p[9][9][9], char s[9][9], int i, int j);
 void 	solution_check_bot_right(char p[9][9][9], char s[9][9], int i, int j);
 void	solution_counter(char p[9][9][9], char s[9][9], int i, int j);
+void	solving_process(char p[9][9][9], char s[9][9]);
 void 	solution_writer(char p[9][9][9], char s[9][9], int i, int j);
 int	unique_solution_existence_check(char s[9][9], int r);
 

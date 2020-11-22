@@ -9,24 +9,15 @@ int 	main()
 {
 	char 	s[9][9]; /*digit in current tile*/
 	char 	p[9][9][9]; /*array of all possible digits*/
-	int    	r; /*process repeat*/
 
 	input_grid(s);
 	grid_sweep(p, s, validity_check);
-    initial_solution_array_filler(p, s);
 	print_grid(s);
-	r = 0;
-	while (r < 81)
-		grid_sweep(p, s, solution_check_lines);
-		grid_sweep(p, s, solution_check_squares);
-		grid_sweep(p, s, solution_counter);
-		grid_sweep(p, s, solution_writer);
-		++r;
-	}
+    initial_solution_array_filler(p, s);
+	solving_process(p, s);
 	print_grid(s);
 	return (0);
 }
-
 
 void 	grid_sweep(char p[9][9][9], char s[9][9], void (*f)(char[9][9][9], char[9][9], int, int))
 {
@@ -76,6 +67,22 @@ void 	initial_solution_array_filler(char p[9][9][9], char s[9][9])
 			++j;
 		}
 		++i;
+	}
+	return ;
+}
+
+void	solving_process(char p[9][9][9], char s[9][9])
+{
+	int 	r;
+
+	r = 0;
+	while (r < 81)
+	{
+		grid_sweep(p, s, solution_check_lines);
+		grid_sweep(p, s, solution_check_squares);
+		grid_sweep(p, s, solution_counter);
+		r = unique_solution_existence_check(s, r);
+		grid_sweep(p, s, solution_writer);
 	}
 	return ;
 }
