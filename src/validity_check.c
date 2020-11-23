@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include"sudoku.h"
 
-void 	validity_check(char s[9][9], int i, int j)
+void 	validity_check(char p[9][9][9], char s[9][9], int i, int j)
 {
 	lines_validity(s, i, j);
 	if(0 <= i && i < 3 && 0 <= j && j < 3)
@@ -24,4 +24,5 @@ void 	validity_check(char s[9][9], int i, int j)
 	else if(6 <= i && i < 9 && 6 <= j && j < 9)
 		bot_right_validity(s, i, j);
 	return ;
+	p[0][0][0] = p[0][0][0];
 }

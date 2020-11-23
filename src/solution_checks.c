@@ -2,32 +2,22 @@
 #include<stdlib.h>
 #include "sudoku.h"
 
-void	solution_scan(char p[9][9][9], char s[9][9])
+void	solution_scan(char p[9][9][9], char s[9][9], int i, int j)
 {
-	int 	i;
-	int		j;
 	int 	q;
 
-	i = 0;
-	while(i < 9)
-	{
-		j = 0;
-		while(j < 9)
+	q = 1;
+	while (q <= 9)
 		{
-			q = 1;
-			while (q <= 9)
-			{
-				if(p[i][j][q] == '.')
+			if(p[i][j][q] == '.' && (s[i][j] == '.' || s[i][j] == '+'))
 				{
+					s[i][j] = q + '0';
 				    solution_check_lines(p, s, i, j);
 				    solution_check_squares(p, s, i, j);
+					s[i][j] = '.';
 				}
-				++q;
-			}
-			++j;
+			++q;
 		}
-		++i;
-	}
 	return ;
 }
 
@@ -36,8 +26,6 @@ void 	solution_check_lines(char p[9][9][9], char s[9][9], int i, int j)
 	int		k;
 	int		q;
 
-	if(s[i][j] == '.' || s[i][j] == '+')
-	{
 		q = 1;
 		while (q <= 9)
 		{
@@ -55,15 +43,11 @@ void 	solution_check_lines(char p[9][9][9], char s[9][9], int i, int j)
 			}
 			++q;
 		}
-		s[i][j] = '.';
-	}
 	return ;
 }
 
 void	solution_check_squares(char p[9][9][9], char s[9][9], int i, int j)
 {
-	if (s[i][j] == '.')
-	{ 
 		if (0 <= i && i < 3 && 0 <= j && j < 3)
 			solution_check_top_left(p, s, i, j);
 		else if (0 <= i && i < 3 && 3 <= j && j < 6)
@@ -82,7 +66,5 @@ void	solution_check_squares(char p[9][9][9], char s[9][9], int i, int j)
 			solution_check_bot_mid(p, s, i, j);
 		else if(6 <= i && i < 9 && 6 <= j && j < 9)
 			solution_check_bot_right(p, s, i, j);
-		s[i][j] = '.';
-	}
 	return ;
 }

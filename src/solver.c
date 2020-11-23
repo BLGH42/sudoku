@@ -2,25 +2,6 @@
 #include<stdlib.h>
 #include "sudoku.h"
 
-void	solution_count(char p[9][9][9], char s[9][9])
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < 9)
-	{
-		j = 0;
-		while (j < 9)
-		{
-			solution_counter(p, s, i, j);
-			++j;
-		}
-		++i;
-	}
-	return ;
-}
-
 void	solution_counter(char p[9][9][9], char s[9][9], int i, int j)
 {
 	int 	q;
@@ -40,52 +21,24 @@ void	solution_counter(char p[9][9][9], char s[9][9], int i, int j)
 	return ;
 }
 
-void   	unique_solution_existence_check(char s[9][9])
+void   	unique_solution_existence_check(char p[9][9][9], char s[9][9], int i, int j)
 {
 	int 	x;
-	int 	i;
-	int 	j;
 
-	x = 0;
-	i = 0;
-	while (i < 9)
-	{
-		j = 0;
-		while (j < 9)
-		{
-			if (s[i][j] == '*')
-				x = 1;
-			else if (s[i][j] == '+' && x == 0)
-				x = 2;
-			++j;
-		}
-		++i;
-	}
-	if (x == 2)
+	if (i == 0 && j ==0)
+		x = 0;
+	if (s[i][j] == '*')
+		x = 1;
+	else if (s[i][j] == '+' && (x == 0 || x == 2))
+		x = 2;
+	if (i == 8 && j == 8 && x == 2)
 	{
 		printf("\nIt appears that this grid's difficulty is beyond my solving skills. :(\n");
 		exit(0);
 	}
 	else
 		return ;
-}
-
-void	solution_resolution(char p[9][9][9], char s[9][9])
-{
-	int 	i;
-	int 	j;
-
-	i = 0;
-	while (i < 9)
-	{
-		j = 0;
-		while (j < 9)
-		{
-			solution_writer(p, s, i, j);
-			++j;
-		}
-		++i;
-	}
+	p[0][0][0] = p[0][0][0];
 }
 
 void 	solution_writer(char p[9][9][9], char s[9][9], int i, int j)
