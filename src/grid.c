@@ -48,3 +48,22 @@ void print_grid(char s[9][9])
 	printf("\n");
 	return;
 }
+
+void 	grid_loop(char p[9][9][9], char s[9][9], void (*f)(char p[9][9][9], char s[9][9], int i, int j))
+{
+	int 	i;
+	int 	j;
+
+	i = 0;
+	while (i < 9)
+		{
+			j = 0;
+			while (j < 9)
+				{
+					(*f)(p, s, i, j);
+					++j;
+				}
+			++i;
+		}
+	return ;
+}  

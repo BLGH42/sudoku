@@ -16,46 +16,39 @@ int 	main()
 	return (0);
 }
 
+void 	p_array_fill(char p[9][9][9], char s[9][9], int i, int j)
+{
+	int		 q;
+	
+	q = 1;
+	while(q <= 9)
+	{
+		p[i][j][q] = '.';
+		++q;
+	}
+	return ;
+	s[0][0] = s[0][0];
+}
+
 void 	solving_process(char p[9][9][9], char s[9][9], int i, int j)
 {
-	i = i;
-	j = j;
 	grid_loop(p, s, solution_scan);
 	grid_loop(p, s, solution_counter);
 	grid_loop(p, s, unique_solution_existence_check);
 	grid_loop(p, s, solution_writer);
 	return ;
+	i = i;
+	j = j;
 }
 
-void 	p_array_fill(char p[9][9][9], char s[9][9], int i, int j)
+void 	second_solving_process(char p[9][9][9], char s[9][9], int i, int j)
 {
-	int q;
-	
-	q = 1;
-	while(q <= 9)
-		{
-		p[i][j][q] = s[i][j];
-		++q;
-		}
+	grid_loop(p, s, second_solution_scan);
+	grid_loop(p, s, solution_counter);
+	grid_loop(p, s, second_unique_solution_existence_check);
+	print_grid(s);
+	grid_loop(p, s, second_solution_writer);
 	return ;
+	i = i;
+	j = j;
 }
-
-void 	grid_loop(char p[9][9][9], char s[9][9], void (*f)(char p[9][9][9], char s[9][9], int i, int j))
-{
-	int 	i;
-	int 	j;
-
-	i = 0;
-	while (i < 9)
-		{
-			j = 0;
-			while (j < 9)
-				{
-					(*f)(p, s, i, j);
-					++j;
-				}
-			++i;
-		}
-	return ;
-}
-				
