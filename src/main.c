@@ -11,7 +11,8 @@ int 	main()
 	grid_loop(p, s, validity_check);
 	print_grid(s);
     grid_loop(p, s, p_array_fill);
-	grid_loop(p, s, solving_process);
+	grid_loop(p, s, initial_solving_process);
+	printf("\ntoo ez lol");
 	print_grid(s);
 	return (0);
 }
@@ -19,7 +20,7 @@ int 	main()
 void 	p_array_fill(char p[9][9][9], char s[9][9], int i, int j)
 {
 	int		 q;
-	
+
 	q = 1;
 	while(q <= 9)
 	{
@@ -30,7 +31,7 @@ void 	p_array_fill(char p[9][9][9], char s[9][9], int i, int j)
 	s[0][0] = s[0][0];
 }
 
-void 	solving_process(char p[9][9][9], char s[9][9], int i, int j)
+void 	initial_solving_process(char p[9][9][9], char s[9][9], int i, int j)
 {
 	grid_loop(p, s, solution_scan);
 	grid_loop(p, s, solution_counter);
@@ -46,7 +47,6 @@ void 	second_solving_process(char p[9][9][9], char s[9][9], int i, int j)
 	grid_loop(p, s, second_solution_scan);
 	grid_loop(p, s, solution_counter);
 	grid_loop(p, s, second_unique_solution_existence_check);
-	print_grid(s);
 	grid_loop(p, s, second_solution_writer);
 	return ;
 	i = i;

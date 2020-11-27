@@ -88,7 +88,7 @@ void 	bot_right_validity(char p[9][9][9], char s[9][9], int i, int j)
 
 void 	lines_validity(char p[9][9][9], char s[9][9], int i, int j)
 {
-	int k;
+	int 	k;
 
 	k = 0;
 	while (k < 9)

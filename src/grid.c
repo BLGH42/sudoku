@@ -2,10 +2,10 @@
 #include<stdlib.h>
 #include"sudoku.h"
 
-void input_grid(char s[9][9])
+void 	input_grid(char s[9][9])
 {
-	int i;
-	int j;
+	int 	i;
+	int 	j;
 	printf("Enter a 9x9 grid with digits from 1 to 9 in one single line, from top left to bottom right following the lines.\nNo identical digits in the same line, column or 3x3 subsquare.\nType . for empty tile.\n");
 	i = 0;
 	while(i < 9)
@@ -28,11 +28,11 @@ void input_grid(char s[9][9])
 	return;
 }
 
-void print_grid(char s[9][9])
+void 	print_grid(char s[9][9])
 {
-	int i;
-	int j;
-	
+	int 	i;
+	int 	j;
+
 	i = 0;
 	while(i < 9)
 	{
@@ -66,4 +66,4 @@ void 	grid_loop(char p[9][9][9], char s[9][9], void (*f)(char p[9][9][9], char s
 			++i;
 		}
 	return ;
-}  
+}
