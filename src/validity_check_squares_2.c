@@ -20,7 +20,7 @@ void 	mid_right_validity(char p[9][9][9], char s[9][9], int i, int j)
 		++k;
 	}
 	return ;
-	p[0][0][0] = p[0][0][0];
+	void(p[0][0][0]);
 }
 
 void 	bot_left_validity(char p[9][9][9], char s[9][9], int i, int j)
@@ -41,7 +41,7 @@ void 	bot_left_validity(char p[9][9][9], char s[9][9], int i, int j)
 		++k;
 	}
 	return ;
-	p[0][0][0] = p[0][0][0];
+	void(p[0][0][0]);
 }
 
 void 	bot_mid_validity(char p[9][9][9], char s[9][9], int i, int j)
@@ -62,7 +62,7 @@ void 	bot_mid_validity(char p[9][9][9], char s[9][9], int i, int j)
 		++k;
 	}
 	return ;
-	p[0][0][0] = p[0][0][0];
+	void(p[0][0][0]);
 }
 
 void 	bot_right_validity(char p[9][9][9], char s[9][9], int i, int j)
@@ -83,7 +83,7 @@ void 	bot_right_validity(char p[9][9][9], char s[9][9], int i, int j)
 		++k;
 	}
 	return ;
-	p[0][0][0] = p[0][0][0];
+	void(p[0][0][0]);
 }
 
 void 	lines_validity(char p[9][9][9], char s[9][9], int i, int j)
@@ -100,5 +100,5 @@ void 	lines_validity(char p[9][9][9], char s[9][9], int i, int j)
 		++k;
 	}
 	return ;
-	p[0][0][0] = p[0][0][0];
+	void(p[0][0][0]);
 }

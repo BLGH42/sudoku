@@ -21,7 +21,7 @@ void   	second_unique_solution_existence_check(char p[9][9][9], char s[9][9], in
 	    exit(0);
 	}
 	return ;
-	p[0][0][0] = p[0][0][0];
+	void(p[0][0][0]);
 }
 
 void 	guess_and_try(char p[9][9][9], char s[9][9], int i, int j)

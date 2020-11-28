@@ -34,7 +34,7 @@ void   	unique_solution_existence_check(char p[9][9][9], char s[9][9], int i, in
 	if (i == 8 && j == 8 && m == 2)
 		grid_loop(p, s, initialiser);
 	return ;
-	p[0][0][0] = p[0][0][0];
+	void(p[0][0][0]);
 }
 
 void	initialiser(char p[9][9][9], char s[9][9], int i, int j)
@@ -52,6 +52,7 @@ void	initialiser(char p[9][9][9], char s[9][9], int i, int j)
 		}
 		++q;
 	}
+	return ;
 }
 
 void 	solution_writer(char p[9][9][9], char s[9][9], int i, int j)
