@@ -37,6 +37,7 @@ void 	initial_solving_process(char p[9][9][9], char s[9][9], int i, int j)
 	grid_loop(p, s, solution_counter);
 	grid_loop(p, s, unique_solution_existence_check);
 	grid_loop(p, s, solution_writer);
+	print_grid(s);
 	i = 0;
 	j = 0;
 	i = i + j;
@@ -49,6 +50,7 @@ void 	second_solving_process(char p[9][9][9], char s[9][9], int i, int j)
 	grid_loop(p, s, solution_counter);
 	grid_loop(p, s, second_unique_solution_existence_check);
 	grid_loop(p, s, second_solution_writer);
+	print_grid(s);
 	i = 0;
 	j = 0;
 	i = i + j;
