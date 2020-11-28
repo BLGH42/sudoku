@@ -24,5 +24,5 @@ void 	validity_check(char p[9][9][9], char s[9][9], int i, int j)
 	else if(6 <= i && i < 9 && 6 <= j && j < 9)
 		bot_right_validity(p, s, i, j);
 	return ;
-	void(p[0][0][0]);
+    p[0][0][0] = ' ';
 }

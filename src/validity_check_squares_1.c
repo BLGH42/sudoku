@@ -20,7 +20,7 @@ void 	top_left_validity(char p [9][9][9], char s[9][9], int i, int j)
 		++k;
 	}
 	return ;
-	void(p[0][0][0]);
+    p[0][0][0] = ' ';
 }
 
 void 	top_mid_validity(char p[9][9][9], char s[9][9], int i, int j)
@@ -41,7 +41,7 @@ void 	top_mid_validity(char p[9][9][9], char s[9][9], int i, int j)
 		++k;
 	}
 	return ;
-	void(p[0][0][0]);
+    p[0][0][0] = ' ';
 }
 
 void 	top_right_validity(char p[9][9][9], char s[9][9], int i, int j)
@@ -62,7 +62,7 @@ void 	top_right_validity(char p[9][9][9], char s[9][9], int i, int j)
 		++k;
 	}
 	return ;
-	void(p[0][0][0]);
+    p[0][0][0] = ' ';
 }
 
 void 	mid_left_validity(char p[9][9][9], char s[9][9], int i, int j)
@@ -83,7 +83,7 @@ void 	mid_left_validity(char p[9][9][9], char s[9][9], int i, int j)
 		++k;
 	}
 	return ;
-	void(p[0][0][0]);
+    p[0][0][0] = ' ';
 }
 
 void 	mid_mid_validity(char p[9][9][9], char s[9][9], int i, int j)
@@ -104,5 +104,5 @@ void 	mid_mid_validity(char p[9][9][9], char s[9][9], int i, int j)
 		++k;
 	}
 	return ;
-	void(p[0][0][0]);
+    p[0][0][0] = ' ';
 }
