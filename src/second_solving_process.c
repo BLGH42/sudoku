@@ -2,28 +2,6 @@
 #include<stdlib.h>
 #include "sudoku.h"
 
-void   	second_unique_solution_existence_check(char p[9][9][9], char s[9][9], int i, int j)
-{
-	int 	m;
-
-	if (i == 0 && j ==0)
-		m = 0;
-	if (s[i][j] == '*')
-		m = 1;
-	else if (s[i][j] == '+' && (m == 0 || m == 2))
-		m = 2;
-	if (i == 8 && j == 8 && m == 2)
-		grid_loop(p, s, guess_and_try);
-	if (i == 8 && j == 8 && m == 0)
-	{
-		printf("\nFUCKING SOLVED HAHAHA");
-		print_grid(s);
-	    exit(0);
-	}
-	return ;
-    p[0][0][0] = ' ';
-}
-
 void 	guess_and_try(char p[9][9][9], char s[9][9], int i, int j)
 {
 	int q;
@@ -35,7 +13,7 @@ void 	guess_and_try(char p[9][9][9], char s[9][9], int i, int j)
 		{
 			s[i][j] = q + '0';
 			p[i][j][q] = 'b';
-			grid_loop(p, s, second_solving_process);
+		    second_solving_process(p, s);
 		}
 		++q;
 	}
@@ -69,7 +47,6 @@ void 	backtrack_loop(char p[9][9][9], char s[9][9])
 {		  
 	int 	i;
 	int 	j;
-	int 	q;
 
 	i = 8;
 	while (i >= 0)
@@ -77,17 +54,7 @@ void 	backtrack_loop(char p[9][9][9], char s[9][9])
 		j = 8;
 		while (j >= 0)
 		{
-			q = 9;
-			while (q > 0)
-			{
-				backtrack(p, s, i, j);
-				if (p[i][j][q] != 'X' && p[i][j][q] != 'a' && p[i][j][q] != '.')
-				{
-					printf("Invalid grid\n");
-					exit(0);
-				}
-				--q;
-			}
+			backtrack(p, s, i, j);
 			--j;
 		}
 		--i;
@@ -102,7 +69,7 @@ void 	backtrack(char p[9][9][9], char s[9][9], int i, int j)
 	q = 9;
 	while (q > 0)
 	{
-		if (p[i][j][q] == 'x' || p[i][j][q] == 'c')
+		if (p[i][j][q] == 'x' || p[i][j][q] == 'c' || p[i][j][q] == 'o')
 		{
 			p[i][j][q] = '.';
 			s[i][j] = '+';
@@ -110,16 +77,11 @@ void 	backtrack(char p[9][9][9], char s[9][9], int i, int j)
 		else if  (p[i][j][q] == 'b')
 		{
 			p[i][j][q] = 'o';
-			grid_loop(p, s, second_solving_process);
-		}
-		else if (p[i][j][q] == 'o')
-		{
-			p[i][j][q] = '.';
 			s[i][j] = '+';
+		    second_solving_process(p, s);
 		}
-		else if (p[i][j][q] == 'd')
-			thisfunctionsavesmylife(p, s, i, j);
 		--q;
 	}
 	return ;
 }
+
