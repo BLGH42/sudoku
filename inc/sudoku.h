@@ -56,5 +56,6 @@ void 	second_solution_writer(char p[9][9][9], char s[9][9], int i, int j);
 void 	backtrack_loop(char p[9][9][9], char s[9][9]);
 void 	backtrack(char p[9][9][9], char s[9][9], int i, int j);
 void 	thisfunctionsavesmylife(char p[9][9][9], char s[9][9], int i, int j);
+a
 
 #endif
