@@ -7,7 +7,7 @@ int 	main()
 	char 	s[9][9]; /*digit in current tile*/
 	char 	p[9][9][9]; /*array of all digits that could fit in a tile*/
 
-	input_grid(s);
+	grid_loop(p, s, input_grid);
 	grid_loop(p, s, validity_check);
 	print_grid(s);
     grid_loop(p, s, p_array_fill);
