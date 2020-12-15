@@ -2,48 +2,48 @@
 #include<stdlib.h>
 #include "sudoku.h"
 
-void 	guess_and_try(char p[9][9][9], char s[9][9], int i, int j)
+void 	guess_and_try(char s[9][9][10], int i, int j)
 {
 	int q;
 
 	q = 1;
 	while (q <= 9)
 	{
-		if (s[i][j] == '+' && p[i][j][q] == '.')
+		if (s[i][j][0] == '+' && s[i][j][q] == '.')
 		{
-			s[i][j] = q + '0';
-			p[i][j][q] = 'b';
-		    second_solving_process(p, s);
+			s[i][j][0] = q + '0';
+			s[i][j][q] = 'b';
+		    second_solving_process(s);
 		}
 		++q;
 	}
 	return ;
 }
 
-void 	second_solution_writer(char p[9][9][9], char s[9][9], int i, int j)
+void 	second_solution_writer(char s[9][9][10], int i, int j)
 {
 	int 	q;
 	
 	q = 1;
 	while (q <= 9)
 	{
-		if(s[i][j] == '*')
+		if(s[i][j][0] == '*')
 		{
-			if(p[i][j][q] == '.')
+			if(s[i][j][q] == '.')
 			{
-				s[i][j] = q + '0';
-				p[i][j][q] = 'c';
+				s[i][j][0] = q + '0';
+				s[i][j][q] = 'c';
 			}
 		}
 		++q;
 	}
-	if (s[i][j] == '.')
-		backtrack_loop(p, s);
-	grid_loop(p, s, validity_check);
+	if (s[i][j][0] == '.')
+		backtrack_loop(s);
+	grid_loop(s, validity_check);
 	return ;
 }
 
-void 	backtrack_loop(char p[9][9][9], char s[9][9])
+void 	backtrack_loop(char s[9][9][10])
 {		  
 	int 	i;
 	int 	j;
@@ -54,7 +54,7 @@ void 	backtrack_loop(char p[9][9][9], char s[9][9])
 		j = 8;
 		while (j >= 0)
 		{
-			backtrack(p, s, i, j);
+			backtrack(s, i, j);
 			--j;
 		}
 		--i;
@@ -62,23 +62,23 @@ void 	backtrack_loop(char p[9][9][9], char s[9][9])
 	return ;
 }
 
-void 	backtrack(char p[9][9][9], char s[9][9], int i, int j)
+void 	backtrack(char s[9][9][10], int i, int j)
 {
 	int 	q;
 
 	q = 9;
 	while (q > 0)
 	{
-		if (p[i][j][q] == 'x' || p[i][j][q] == 'c' || p[i][j][q] == 'o')
+		if (s[i][j][q] == 'x' || s[i][j][q] == 'c' || s[i][j][q] == 'o')
 		{
-			p[i][j][q] = '.';
-			s[i][j] = '+';
+			s[i][j][q] = '.';
+			s[i][j][0] = '+';
 		}
-		else if  (p[i][j][q] == 'b')
+		else if  (s[i][j][q] == 'b')
 		{
-			p[i][j][q] = 'o';
-			s[i][j] = '+';
-		    second_solving_process(p, s);
+			s[i][j][q] = 'o';
+			s[i][j][0] = '+';
+		    second_solving_process(s);
 		}
 		--q;
 	}

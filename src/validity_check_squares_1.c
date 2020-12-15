@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include"sudoku.h"
 
-void 	top_left_validity(char p [9][9][9], char s[9][9], int i, int j)
+void 	top_left_validity(char s[9][9][10], int i, int j)
 {
 	int 	l;
 	int 	k;
@@ -13,15 +13,15 @@ void 	top_left_validity(char p [9][9][9], char s[9][9], int i, int j)
 		l = 0;
 		while(l < 3)
 		{
-			if(s[k][l] > 47 && k!=i && l!=j && s[i][j] == s[k][l])
+			if(s[k][l][0] > 47 && k!=i && l!=j && s[i][j][0] == s[k][l][0])
 			{
-				if (p[i][j][1] == '0')
+				if (s[i][j][1] == '0')
 				{
 					printf("Invalid grid.\n");
 					exit(0);
 				}
 				else
-					backtrack_loop(p, s);
+					backtrack_loop(s);
 			}
 			++l;
 		}
@@ -30,7 +30,7 @@ void 	top_left_validity(char p [9][9][9], char s[9][9], int i, int j)
 	return ;
 }
 
-void 	top_mid_validity(char p[9][9][9], char s[9][9], int i, int j)
+void 	top_mid_validity(char s[9][9][10], int i, int j)
 {
 	int 	l;
 	int 	k;
@@ -41,15 +41,15 @@ void 	top_mid_validity(char p[9][9][9], char s[9][9], int i, int j)
 		l = 3;
 		while(l < 6)
 		{
-			if(s[k][l] > 47 && k!=i && l!=j && s[i][j] == s[k][l])
+			if(s[k][l][0] > 47 && k!=i && l!=j && s[i][j][0] == s[k][l][0])
 			{
-				if (p[i][j][1] == '0')
+				if (s[i][j][0] == '0')
 				{
 					printf("Invalid grid.\n");
 					exit(0);
 				}
 				else
-					backtrack_loop(p, s);
+					backtrack_loop(s);
 			}
 			++l;
 		}
@@ -58,7 +58,7 @@ void 	top_mid_validity(char p[9][9][9], char s[9][9], int i, int j)
 	return ;
 }
 
-void 	top_right_validity(char p[9][9][9], char s[9][9], int i, int j)
+void 	top_right_validity(char s[9][9][10], int i, int j)
 {
 	int 	l;
 	int 	k;
@@ -69,15 +69,15 @@ void 	top_right_validity(char p[9][9][9], char s[9][9], int i, int j)
 		l = 6;
 		while(l < 9)
 		{
-			if(s[k][l] > 47 && k!=i && l!=j && s[i][j] == s[k][l])
+			if(s[k][l][0] > 47 && k!=i && l!=j && s[i][j][0] == s[k][l][0])
 			{
-				if (p[i][j][1] == '0')
+				if (s[i][j][0] == '0')
 				{
 					printf("Invalid grid.\n");
 					exit(0);
 				}
 				else
-					backtrack_loop(p, s);
+					backtrack_loop(s);
 			}
 			++l;
 		}
@@ -86,7 +86,7 @@ void 	top_right_validity(char p[9][9][9], char s[9][9], int i, int j)
 	return ;
 }
 
-void 	mid_left_validity(char p[9][9][9], char s[9][9], int i, int j)
+void 	mid_left_validity(char s[9][9][10], int i, int j)
 {
 	int 	l;
 	int 	k;
@@ -97,15 +97,15 @@ void 	mid_left_validity(char p[9][9][9], char s[9][9], int i, int j)
 		l = 0;
 		while(l < 3)
 		{
-			if(s[k][l] > 47 && k!=i && l!=j && s[i][j] == s[k][l])
+			if(s[k][l][0] > 47 && k!=i && l!=j && s[i][j][0] == s[k][l][0])
 			{
-				if (p[i][j][1] == '0')
+				if (s[i][j][0] == '0')
 				{
 					printf("Invalid grid.\n");
 					exit(0);
 				}
 				else
-					backtrack_loop(p, s);
+					backtrack_loop(s);
 			}
 			++l;
 		}
@@ -114,7 +114,7 @@ void 	mid_left_validity(char p[9][9][9], char s[9][9], int i, int j)
 	return ;
 }
 
-void 	mid_mid_validity(char p[9][9][9], char s[9][9], int i, int j)
+void 	mid_mid_validity(char s[9][9][10], int i, int j)
 {
 	int 	l;
 	int 	k;
@@ -125,15 +125,15 @@ void 	mid_mid_validity(char p[9][9][9], char s[9][9], int i, int j)
 		l = 3;
 		while(l < 6)
 		{
-			if(s[k][l] > 47 && k!=i && l!=j && s[i][j] == s[k][l])
+			if(s[k][l][0] > 47 && k!=i && l!=j && s[i][j][0] == s[k][l][0])
 			{
-				if (p[i][j][1] == '0')
+				if (s[i][j][0] == '0')
 				{
 					printf("Invalid grid.\n");
 					exit(0);
 				}
 				else
-					backtrack_loop(p, s);
+					backtrack_loop(s);
 			}
 			++l;
 		}

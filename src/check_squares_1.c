@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include "sudoku.h"
 
-void 	solution_check_top_left(char p[9][9][9], char s[9][9], int i, int j)
+void 	solution_check_top_left(char s[9][9][10], int i, int j)
 {
 	int		q;
 	int 	k;
@@ -11,17 +11,17 @@ void 	solution_check_top_left(char p[9][9][9], char s[9][9], int i, int j)
 	q = 1;
 	while (q <= 9)
 	{
-		s[i][j] = q + '0';
+		s[i][j][0] = q + '0';
 		k = 0;
 		while(k < 3)
 		{
 			l = 0;
 			while(l < 3)
 			{
-				if (s[k][l] != '.' && s[k][l] != '+')
+				if (s[k][l][0] != '.' && s[k][l][0] != '+')
 				{
-					if(k != i && l != j && s[i][j] == s[k][l])
-						p[i][j][q] = 'X';
+					if(k != i && l != j && s[i][j][0] == s[k][l][0])
+						s[i][j][q] = 'X';
 				}
 				++l;
 			}
@@ -32,7 +32,7 @@ void 	solution_check_top_left(char p[9][9][9], char s[9][9], int i, int j)
 	return ;
 }
 
-void 	solution_check_top_mid(char p[9][9][9], char s[9][9], int i, int j)
+void 	solution_check_top_mid(char s[9][9][10], int i, int j)
 {
 	int		q;
 	int 	k;
@@ -41,17 +41,17 @@ void 	solution_check_top_mid(char p[9][9][9], char s[9][9], int i, int j)
 	q = 1;
 	while (q <= 9)
 	{
-		s[i][j] = q + '0';
+		s[i][j][0] = q + '0';
 		k = 0;
 		while(k < 3)
 		{
 			l = 3;
 			while(l < 6)
 			{
-				if (s[k][l] != '.' && s[k][l] != '+')
+				if (s[k][l][0] != '.' && s[k][l][0] != '+')
 				{
-					if(k != i && l != j && s[i][j] == s[k][l])
-						p[i][j][q] = 'X';
+					if(k != i && l != j && s[i][j][0] == s[k][l][0])
+						s[i][j][q] = 'X';
 				}
 				++l;
 			}
@@ -62,7 +62,7 @@ void 	solution_check_top_mid(char p[9][9][9], char s[9][9], int i, int j)
 	return ;
 }
 
-void 	solution_check_top_right(char p[9][9][9], char s[9][9], int i, int j)
+void 	solution_check_top_right(char s[9][9][10], int i, int j)
 {
 	int		q;
 	int 	k;
@@ -71,17 +71,17 @@ void 	solution_check_top_right(char p[9][9][9], char s[9][9], int i, int j)
 	q = 1;
 	while (q <= 9)
 	{
-		s[i][j] = q + '0';
+		s[i][j][0] = q + '0';
 		k = 0;
 		while(k < 3)
 		{
 			l = 6;
 			while(l < 9)
 			{
-				if (s[k][l] != '.' && s[k][l] != '+')
+				if (s[k][l][0] != '.' && s[k][l][0] != '+')
 				{
-					if(k != i && l != j && s[i][j] == s[k][l])
-						p[i][j][q] = 'X';
+					if(k != i && l != j && s[i][j][0] == s[k][l][0])
+						s[i][j][q] = 'X';
 				}
 				++l;
 			}
@@ -92,7 +92,7 @@ void 	solution_check_top_right(char p[9][9][9], char s[9][9], int i, int j)
 	return ;
 }
 
-void 	solution_check_mid_left(char p[9][9][9], char s[9][9], int i, int j)
+void 	solution_check_mid_left(char s[9][9][10], int i, int j)
 {
 	int		q;
 	int 	k;
@@ -101,17 +101,17 @@ void 	solution_check_mid_left(char p[9][9][9], char s[9][9], int i, int j)
 	q = 1;
 	while (q <= 9)
 	{
-		s[i][j] = q + '0';
+		s[i][j][0] = q + '0';
 		k = 3;
 		while(k < 6)
 		{
 			l = 0;
 			while(l < 3)
 			{
-				if (s[k][l] != '.' && s[k][l] != '+')
+				if (s[k][l][0] != '.' && s[k][l][0] != '+')
 				{
-					if(k != i && l != j && s[i][j] == s[k][l])
-						p[i][j][q] = 'X';
+					if(k != i && l != j && s[i][j][0] == s[k][l][0])
+						s[i][j][q] = 'X';
 				}
 				++l;
 			}

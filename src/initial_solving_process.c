@@ -2,36 +2,36 @@
 #include<stdlib.h>
 #include "sudoku.h"
 
-void	solution_counter(char p[9][9][9], char s[9][9], int i, int j)
+void	solution_counter(char s[9][9][10], int i, int j)
 {
 	int 	q;
 
 	q = 1;
 	while (q <= 9)
 	{
-		if(p[i][j][q] == '.')
+		if(s[i][j][q] == '.')
 		{
-			if(s[i][j] == '.')
-				s[i][j] = '*';
-			else if(s[i][j] == '*')
-				s[i][j] = '+';
+			if(s[i][j][0] == '.')
+				s[i][j][0] = '*';
+			else if(s[i][j][0] == '*')
+				s[i][j][0] = '+';
 		}
 		++q;
 	}
 	return ;
 }
 
-void   	unique_solution_existence_check(char p[9][9][9], char s[9][9], int i, int j)
+void   	unique_solution_existence_check(char s[9][9][10], int i, int j)
 {
 	int 	m;
 
 	if (i == 0 && j == 0)
 		m = 0;
-	if (s[i][j] == '*')
+	if (s[i][j][0] == '*')
 		m = 1;
-	else if (s[i][j] == '+' && m != 1)
+	else if (s[i][j][0] == '+' && m != 1)
 		m = 2;
-	else if (s[i][j] == '.' && m == 0)
+	else if (s[i][j][0] == '.' && m == 0)
 		m = 3;
 	if (i == 8 && j == 8 && m == 0)
 	{
@@ -40,7 +40,7 @@ void   	unique_solution_existence_check(char p[9][9][9], char s[9][9], int i, in
 		exit(0);
 	}
 	else if (i == 8 && j == 8 && m == 2)
-		grid_loop(p, s, guess_and_try);
+		grid_loop(s, guess_and_try);
 	else if (i == 8 && j == 8 && m == 3)
 	{
 		printf("\nGrid has no valid solution.");
@@ -48,22 +48,21 @@ void   	unique_solution_existence_check(char p[9][9][9], char s[9][9], int i, in
 		exit(0);
 	}	
 	return ;
-    p[0][0][0] = ' ';
 }
 
-void 	solution_writer(char p[9][9][9], char s[9][9], int i, int j)
+void 	solution_writer(char s[9][9][10], int i, int j)
 {
 	int 	q;
 	
 	q = 1;
 	while (q <= 9)
 	{
-		if(s[i][j] == '*')
+		if(s[i][j][0] == '*')
 		{
-			if(p[i][j][q] == '.')
+			if(s[i][j][q] == '.')
 			{
-				s[i][j] = q + '0';
-				p[i][j][q] = 'a';
+				s[i][j][0] = q + '0';
+				s[i][j][q] = 'a';
 			}
 		}
 		++q;
